@@ -11,6 +11,8 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			#保存成功
+			#ログイン
+			login_@user
 			#成功時のメッセージ表示
 			flash[:success] = "Welcome to the Sample App!"
 			#ユーザーページへリダイレクト
