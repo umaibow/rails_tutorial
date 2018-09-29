@@ -48,12 +48,33 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		assert_not is_logged_in?
 		#ホーム画面への遷移を確認
 		assert_redirected_to root_url
+		#ログアウトする
+		delete logout_path
 		follow_redirect!
 		#ログインのリンクが存在している
 		assert_select "a[href=?]", login_path
 		#ログアウトのリンクが存在していない
-		assert_select "a[href=?]", logout_path, count:0
+		assert_select "a[href=?]", logout_path, count: 0
 		#ユーザリンクが存在していない
-		assert_select "a[href=?]", user_path(@user), count:0
+		assert_select "a[href=?]", user_path(@user), count: 0
+	end
+	
+	#remember_meチェックボックスのテスト
+	test "login with remembering" do
+		#ログイン
+		log_in_as(@user, remember_me: '1')
+		#クッキーに保存されているか
+		assert_not_empty cookies['remember_token']
+	end
+	
+	test "login without remembering" do
+		#ログイン
+		log_in_as(@user, remember_me: '1')
+		#ログアウト
+		delete logout_path
+		#ログイン
+		log_in_as(@user, remember_me: '0')
+		#クッキーに保存されているか
+		assert_not_empty cookies['remember_token']
 	end
 end

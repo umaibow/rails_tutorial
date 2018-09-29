@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 		if @user.save
 			#保存成功
 			#ログイン
-			login_@user
+			log_in @user
 			#成功時のメッセージ表示
 			flash[:success] = "Welcome to the Sample App!"
 			#ユーザーページへリダイレクト
