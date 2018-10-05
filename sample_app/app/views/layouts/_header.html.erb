@@ -10,7 +10,7 @@
 				<li><%= link_to "Help",		help_path	%></li>
 				<% if logged_in? %>
 					<!--users link button-->
-					<li><%= link_to "Users", '#' %></li>
+					<li><%= link_to "Users", users_path %></li>
 					<!--create dropdown view-->
 					<li class= "dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -21,7 +21,7 @@
 							<!--profile link button-->
 							<li><%= link_to "Profile", current_user %></li>
 							<!--setting link button-->
-							<li><%= link_to "Settings", '#' %></li>
+							<li><%= link_to "Settings", 'edit_user_path(current_user)' %></li>
 							<li class="divider"></li>
 							<!--logout link button-->
 							<li><%= link_to "Log out", logout_path, method: :delete %></li>

@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 			#ログインを保存
 			remember user
 			#ユーザーページにリダイレクト
-			redirect_to user
+			redirect_back_or user
 		else
 			#エラーメッセージを一時だけ表示
 			flash.now[:danger] = 'Invalid email/password combination'
